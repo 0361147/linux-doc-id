@@ -1,12 +1,13 @@
 # Table of content
 
-- [File system tree](#File-system-tree)
-- [No File Extension](#No-File-Extension)
-- [Option and Arguments](#Option-and-Arguments)
-- [Long format List](#Long-format-List)
-- [Linux System Directory](#Linux-System-Directory)
-- [Softlinks / Symbolic links](#Softlinks-/-Symbolic-links)
-- [Hardlinks](#Hardlinks)
+- [File system tree](#file-system-tree)
+- [No File Extension](#no-file-extension)
+- [Option and Arguments](#option-and-arguments)
+- [Long format List](#long-format-list)
+- [Linux System Directory](#linux-system-directory)
+- [Wildcard](#wildcard)
+- [Softlinks / Symbolic links](#softlinks-/-symbolic-links)
+- [Hardlinks](#hardlinks)
 
 ## File system tree
 
@@ -109,8 +110,50 @@ Directory Nme | Deskripsi
   - /etc/fstab (konfigurasi storage device dan juga mount point dari device tersebut)
   - /etc/passwd (list dari user yang ada)
 
+## Wildcard
+
+Wildcard dalam dunia pemrograman dapat di artikan sebagai sebuah regular expression. Wildcard digunakan untuk memilih character berdasarkan filter yang di berikan. Filter tersebut berupa simbol simbol yang memiliki artinya masing masing.
+
+**Wildcards**
+
+Wildcard | Meaning
+--- | ---
+**\*** | Memilih seluruh character yang ada.
+**?** | memilih seluruh character yang memiliki panjang 1
+**[character]** | Memilih seluruh character yang merupakan member dari set character
+**[!character]** | Memilih seluruh character yang bukan member dari set character
+**[[:class:]]** | Memilih seluruh character yang menjadi member dari class yang belih spesifik
+**[0-5]** | Memilih seluruh character yang beada di antara angka 0 ~ 5
+**[A-C]** | Memilih seluruh character uppercase yang berada di antara A ~ C
+**[a-g]** | Memilih selurh character lowercase yang berada di antara a ~ g
+
+**Character Class**
+
+Character Class | Meaning
+--- | ---
+**[:alnum:]** | Memilih seluruh character baik tulisan atau angka
+**[:alpha:]** | Memilih seluruh alphabetic character
+**[:digit:]** | Memilih seluruh numeral
+**[:lower:]** | Memilih seluruh kalimat yang seluruhnya menggunakan lowercase
+**[:upper:]** | Memilih seluruh kalimat yang seluruhnya menggunakan uppercase
+
+**Wildcards Example**
+
+Pattern | Matches
+--- | ---
+**\*** | memilih seluruh files
+**g*** | memilih selurh files yang di awali oleh huruf g
+**b\*.txt** | memilih seluruh files yang di awali oleh huruf g dan di akhiri oleh .txt
+**Data???** | memilih seluruh files yang di awali dengan Data dan di ikuti oleh 3 character lainnya
+**[abc]*** | memilih seluruh files yang di awali oleh huruf a, b atau c
+**BACKUP.[0-9][0-9][0-9]** | memilih seluruh files yang diawali oleh BACKUP dan di ikuti oleh 3 angka.
+**[[:upper:]]*** | memilih seluruh files yang di awali oleh uppercase letter
+**[![:digit:]]*** | memilih seluruh files yang tidak di awali oleh angka
+***[[:lower:]123]** | memilih seluruh files yang di akhiri oleh huruf kecil atau angka 1, 2, atau 3.
+
 ## Softlinks / Symbolic links
 
 Sebuah softlinks adalah file yang akan mengacu pada file lainnya. Dalam windows softlink dapat di artikan sebagai sebuah shortcut dari sebuah file. Karena memiliki fungsi sebagai shortcut maka sebuah softlinks tidak dapat di jalankan apabila file yang di jadikan acuan / tujuan di hapus.
 
 ## Hardlinks
+
