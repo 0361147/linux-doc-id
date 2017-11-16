@@ -17,3 +17,13 @@ Option | Long Option | Description
 **-r** | **--reverse** | menampilkan list dengan urutan terbalik (descending)
 **-S** | | menampilkan berdasarkan ukuran file
 **-t** | | menampilkan berdasarkan waktu modifikasi
+
+**Example**
+
+Commad | Meanig
+--- | ---
+**ls** | melihat seluruh list file dan directory dari directory sekarang
+**ls -a** | melihat seluruh list file dan directory termasuk yang terhidden
+**ls /** | melihat seluruh list file dan directory dari directory root ( / )
+**ls /bin ./** | melihat seluruh list file dan directory dari directory /bin dan directory sekarang
+**ls -a /usr /bin ./** | melihat seluruh list file dan directory termasuk yang terhidden dari directory /bin, directory sekarang dan directory /usr

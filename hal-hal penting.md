@@ -2,6 +2,7 @@
 
 - [File system tree](#file-system-tree)
 - [No File Extension](#no-file-extension)
+- [Relative and Absolute Path](#relative-and-absolute-path)
 - [Option and Arguments](#option-and-arguments)
 - [Long format List](#long-format-list)
 - [Linux System Directory](#linux-system-directory)
@@ -22,6 +23,9 @@ Dalam linux tidak seperti windows atau beberapa os lainnya yang mengharuskan seb
 Linux dalam hal file extension memiliki cara yang berbeda untuk mendeteksi sebuah file, jadi sebuah file tetap dapat dikenali oleh sistem tanpa harus mengandalkan extension yang mengikutinya.
 
 Misalkan ada sebuah file dengan pdf extension asli .pdf, tetapi extension pada file tersebut di ganti menjadi .exe. Dalam hal ini linux secara otomatis tetap akan mendeteksi file tersebut sebagai pdf dan ketika kita membuka file tersebut tetap akan di bawa ke program yang di gunakan untuk membuka file pdf.
+
+## Relative and Absolute Path
+
 
 ## Option and Arguments
 

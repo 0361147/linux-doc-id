@@ -16,3 +16,8 @@ Commads | Actions
 **n** | mencari kalimat selanjutnya berdasarkan pencarian sebelumnya
 **h** | menampilkan help screen
 **q** | keluar dari less
+
+**Example**
+Commad | Meaning
+--- | ---
+**less file.txt** | melihat isi dari file.txt dengan less

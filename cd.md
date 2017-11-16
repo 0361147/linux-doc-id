@@ -9,3 +9,12 @@ Command | Deskripsi
 **cd ~** | digunakan untuk berpindah ke home directory user yang sedang aktif
 **cd -** | digunakan untuk kembali ke path sebelumnya
 **cd ~nama_user** | digunakan untuk membuka home directory user tersebut
+
+**Example**
+Commad | Meaning
+--- | ---
+**cd ./Document** | berpindah directory ke document yang ada di dalam directory saat ini
+**cd ..** | kembali ke parrent folder dari folder sekarang
+**cd /** | berpindah ke directory root
+**cd /bin** | berpindah ke directory bin yang ada di root
+**cd ~/Document** | benpindah ke directory document yang ada di home

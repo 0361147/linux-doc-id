@@ -2,7 +2,7 @@
 
 Digunakan untuk membuat sebuah directory baru. Dalam penggunaannya nama directory baru yang akan di berikan setelah mkdir. Dalam menjalankan tugasnya dengan mkdir kita dapat membuat beberapa directory sekaligus dalam 1x commad berjalan, yang perlu di lakukan adalah menambahkan nama directory lain yang ingin di buat setelah nama directory pertama yang dipisahkan dengan spasi.
 
-## Penggunaan
+**Example**
 
 Commad | Description
 --- | ---
