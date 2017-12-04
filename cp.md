@@ -2,7 +2,7 @@
 
 Digunakan untuk mengcopy file atau folder. Dalam penggunaannya kita bisa menggunakan wildcard untuk memfilter file yang akan di copy. Selain itu dalam 1x commad berjalan juga bisa di gunakan untuk mengcopy beberapa file sekaligus.
 
-**Options**
+**Often used Options**
 
 Option | Long Option | Meaning
 --- | --- | ---

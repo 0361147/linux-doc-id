@@ -2,7 +2,7 @@
 
 Digunakan untuk menghapus directory dan file. Dalam penggunaannya rm hanya dapat menghapus file, tetapi dalam ada sebuah option yang membuat rm memungkinkan untuk menghapus sebuah directory. Jadi jika tidak di beri option tersebut rm tidak dapat menghapus directory kosong maupun yang berisi file.
 
-**Option**
+**Often used Option**
 
 Option | Long Option | Meaning
 --- | --- | ---

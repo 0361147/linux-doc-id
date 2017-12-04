@@ -2,7 +2,7 @@
 
 Dalam penggunaannya mv memiliki dua fungsi yaitu untuk memindahkan file / directory dan untuk rename file / directory. Kedua hal tersebut tergantung dari bagaimana mv tersebut di gunakan. Ketika mv di jalankan, ternyata file dengan nama tersebut sudah ada maka secara otomatis akan di overwrite. Untuk penggunaan wildcard sama seperti commad cp.
 
-**Options**
+**Often used Options**
 
 Option | Long Option | Meaning
 --- | --- | ---

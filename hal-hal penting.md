@@ -9,7 +9,13 @@
 - [Wildcard](#wildcard)
 - [Softlinks / Symbolic links](#softlinks-/-symbolic-links)
 - [Hardlinks](#hardlinks)
-
+- [What Exactly Are Commands?](#what-exactly-are-commands)
+- [Standar Input Output Error](#standar-input-output-error)
+- [Redirecting Standard Output](#redirecting-standard-output)
+- [Redirecting Standard Error](#redirecting-standard-error)
+- [Redirecting Standard Input](#redirecting-standard-input)
+- [Redirecting Standar Error and Output to One file](#redirecting-standar-error-and-output-to-one-file)
+- [Pipelines](#pipelines)
 ## File system tree
 
 Sama seperti windows, sistem operasi unix-like juga memiliki sebuah structur file sistem. Dalam unix-like ujung dari hirarki / folder pertama daris sistem dinamakan root yang di lambangkan dengan / . Jadi seluruh file dan folder yang ada pasti memiliki posisi berada di bawah root.
@@ -155,9 +161,126 @@ Pattern | Matches
 **[![:digit:]]*** | memilih seluruh files yang tidak di awali oleh angka
 ***[[:lower:]123]** | memilih seluruh files yang di akhiri oleh huruf kecil atau angka 1, 2, atau 3.
 
-## Softlinks / Symbolic links
-
-Sebuah softlinks adalah file yang akan mengacu pada file lainnya. Dalam windows softlink dapat di artikan sebagai sebuah shortcut dari sebuah file. Karena memiliki fungsi sebagai shortcut maka sebuah softlinks tidak dapat di jalankan apabila file yang di jadikan acuan / tujuan di hapus.
-
 ## Hardlinks
 
+Hardlinks adalah sebuah cara asli dari unix untuk membuat sebuah file, yang kemudian di gunakan juga oleh linux.
+
+![](./img/hard-link.jpg)
+
+Gamabar tersebut adalah bagaimana cara hardlinks dan softlink bekerja. Inode dalam gambar tersebut adalah alamat dari memory yang di gunakan untuk menyimpan myfile.txt. Jadi hardlink akan langsung merujuk pada alamat memory yang digunakan yang mengakibatkan meskipun myfile.txt telah di hapus, hardlink tetap dapat berjalan karena sebelum seluruh file yang merujuk ke suatu alamat memory terhapus maka isi dari memory tersebut masih dapat di gunakan. Begitu juga jika terjadi perubahan nilai dalam myfile.txt yang akan langsung mempengaruhi hardlink dan sebaliknya.
+
+**Limitation of hardlinks**
+
+- Tidak bisa merefrensikan folder
+- hardlinks sulit di bedakan dengan file aslinya
+- Hardlinks dan file yang dibuat linknya harus tetap dalam 1 partisi
+
+## Softlinks / Symbolic links
+
+Sebuah softlinks adalah file yang akan mengacu pada file lainnya. Dalam windows softlink dapat di artikan sebagai sebuah shortcut dari sebuah file. Karena memiliki fungsi sebagai shortcut maka sebuah softlinks tidak dapat di jalankan apabila file yang di jadikan acuan / tujuan di hapus. Selain itu pembuatan softlink juga di maksudkan untuk menutupi kekurangan yang dimiliki oleh hardlink.
+
+**Limitation of softlinks**
+
+- jika file yang di refrensikan terhapus / diganti namanya maka softtidak akan dapat bekerja
+
+## What Exactly Are Commands?
+
+Dalam terminal / bash, semua commad yang kita ketik belum tentu adalah sebuah commad dari linux. Tetapi bisa saja itu merupakan sebuah shortcut commad lainnya. Berikut adalah penbagian commad commad tersebut
+
+1. **Program yang dapat di jalankan**, program ini adalah program yang terdapat di dalam /user/bin atau /bin
+2. **Built-in terminal / bash commad**, bash juga memiliki beberapa commad yang dapat kita jalankan contohnya cd
+3. **Shell function**, hal ini dapat di artikan sebagi sebuah script dari shell / terminal
+4. **Alias**, sebuah commad yang bisa didefinisikan dimana ketika di panggil akan menjalankan commad lainnya. Memiliki fungsi seperti shortcut.
+
+## Commad Notation
+
+Jika kita menjalankan commad yang menampilkan dokumentasi mengenai sebuah commad seperti man atau help maka secara otomatis terdapat bagaimana cara penggunaan commad tersebut. Ini adalah contoh dari penggunaan commad cd, ls dan cp.
+
+**cd** : **cd [-L|[-P[-e]]] [dir]**
+
+**ls** : **ls [OPTION]... [FILE]...**
+
+**cp** : **cp [OPTION]... SOURCE... DIRECTORY**
+
+Dapat dilihat dalam contoh penggunaan tersebut ada beberapa bagian yang berada di dalam kurung persegi ( [ ] ). Jika terdapat di dalam kurung persegi tersebut maka itu adalah sebuah optional. Sedangkan ada juga bagian yang tidak berada di dalam kurung persegi yang berarti bagian tersebut harus di isi, jika tidak commad akan error dan tidak berjalan. Jika terdapat titik-titik maka itu berarti kita dapat memberikan banyak nilai sekaligus, seperti [OPTION]... yang berarti kita dapat memberi banyak option sekaligus. Biasanya dalam bagian description akan di jelaskan mengenai beberapa bagian dalam commad lebih lanjut seperti [OPTION] [-L|[-P[-e]]]. [-L|[-P[-e]]] berarti kita dapat memberikan argument -L atau -P, tetapi jika kita menggunakan argument -P kita juga bisa menambahkan argument -e
+
+## Standar Input Output Error
+
+Ketika kita menjalankan sebuah program dari commadline / GUI maka hasil dari program tersebut dapat di kategorikan menjadi 2 yaitu hasil dari program (stdout) dan pesan kesalahan / error (stderr). Secara umum kedua jenis output tersebut akan di tampilkan di layar. Selain kedua hal tersebut ada juga sebuah program yang ketika di jalankan akan meminta masukan dari user (stdin) yang dimana dalam program commadline secara default terhubung dengan keyboard, sedangkan untuk program GUI akan terhubung dengan keyboard / mouse.
+
+## Redirecting Standard Output
+
+Untuk merubah satandar output yang harus di lakukan adalah menambahkan tanda lebih besar ">" di akhir commad dan memasukan nama dari file yang nantinya akan menyimpan hasil dari commad tersebut. Dengan melakukan hal ini secara otomatis output dari commad tersebut tidak akan lagi di tampilkan melainkan akan secara otomatis di simpan ke dalam sebuah file sesuai dengan nama yang kita berikan.
+
+**Example**
+Commad | Meaning
+--- | ---
+**ls -l / > file.txt** | Menyimpan file output commad ls -l / kedalam file.txt
+**ls > file.txt** | Menyimpan file output commad ls kedalam file.txt
+
+Dengan merubah standar output tidak berarti jika terjadi error, pesan error akan di tulis kedalam file tersebut. Seperti yang telah di jelaskan sebelumnya bahwa ada 3 standar yaitu input, error dan output. Penggunaan ">" hanya untuk merubah stdout tidak untuk stderr. Jika terjadi error ketika kita merubah stdout maka ukuran dari file tersebut adalah 0kb. Hal ini di sebabkan karena dengan penggunaan ">" berarti penulisan file di ulang dari awal. Agar penulisan file di lakukan dari awal kita dapat menggunakan ">>" maka secara otomatis akan di tulis di akhir dari file tersebut.
+
+**Example**
+Commad | Meaning
+--- | ---
+**ls /bin/xx > files.txt**  | Akan menampilkan pesan error dan membuat files.txt tetapi tidak berisi apapun
+**ls /bin >> files.txt** | Menyimpan file output dari commad ls /bin ke files.txt tetapi tidak menulis file tersebut dari awal
+
+**Tips**
+
+Kita dapat membuat sebuah file baru dengan ">". Contoh untuk membuat files.txt kita dapat menjalankan "> files.txt" dalam terminal.
+
+## Redirecting Standard Error
+
+Untuk menggnati standar error (stderr) kita dapat melakukannya dengan cara yang sama dengan standar output (stdout) hanya saja tanda ">" di ganti dengan "2>". 
+
+**Example**
+Commad | Meaning
+--- | ---
+**ls /bin/xx 2> files.txt**  | Akan menulis pesan error kedalam files.txt
+**ls /bin 2>> files.txt** | Menyimpan pesan error dari commad ls /bin ke files.txt tetapi tidak menulis file tersebut dari awal
+
+## Redirecting Standard Input
+
+Untuk mengganti standar input (stdin) dari sebuah commad, yang perlu di lakukan adalah memberikan tanada lebih kecil dari "<" di akhir commad. Selanjutnya adalah memberikan nama file yang akan menjadi standar input baru untuk commad tersebut.
+
+**Example**
+Commad | Meaning
+--- | ---
+**cat < file.txt** | Mengganti standar input (stdin) dari commad cat menjadi file.txt
+**less < file.txt** | Menggnati standar input (stdin) dari commad less menjadi file.txt
+
+## Redirecting Standar Error and Output to One file
+
+Terkadang kita kita ingin agar hasil dari standar output dan standar error di tulis ke dalam sebuah file. Untuk melakukan hal tersebut kita dapat melakukannya dengan cara
+
+**ls -l > out.txt 2>&1** => Membuat standar error dan out di tulis ke dalam file out.txt
+
+Penggunaan "&1" terjadi karena bash mendefinisikan standar input (stdin) sebagai descriptors 0, standar output (stdout) sebagai descriptors 1, standar error (stderr) sebagai descriptors 2. Tetapi dalam bash versi baru kita dapat melakukannya dengan cara
+
+**ls -l &> out.txt** => Membuat standar error dan out di tulis ke dalam file out.txt
+
+atau
+
+**ls -l &>> out.txt*** => Membuat standar error dan out di tulis ke dalam file out.txt tetapi tidak memulai dari awal.
+
+## Pipelines
+
+Pipelines adalah sebuah kemampuan yang di miliki oleh bash / terminal untuk meberubah standar output (stdout) dari sebuah commad dan menjadikannya sebagai standar input (stdin) bagi commad lainnya. Penggunaan pipelines di lakukan di akhir commad dengan menambahkan garis lurus "|" yang biasanya berada di atas tombol enter pada keyboard, selanjutnya di ikuti dengan commad yang akan menggunakan output dari commad 1.
+
+**Example**
+Commad | Meaning
+--- | ---
+**ls / \| less** | Melihat list dari directory root "/" kemudian menampilkan hasil tersebut menggunakan less
+
+Perbedaan pipeline "|" dengan lebih besar dari ">" adalah pipeline "|" di gunakan untuk commad to commad sedangkan lebih besar dari ">" di gunakan untuk commad to file
+
+**pipeline**
+
+**commad1 | commad2**
+
+**Lebih besar dari**
+
+**commad1 > file1**
+
+Jadi ketika kita menggunakan ">" untuk commad to commad maka secara tidak langsung kita memerintahkan bash untuk me-rewrite isi dari commad2 dengan output dari commad1.

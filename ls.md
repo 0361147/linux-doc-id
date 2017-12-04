@@ -2,12 +2,8 @@
 
 ls adalah sebuah commad dalam linux yang digunakan untuk melihat list / isi dari sebuah folder. Dalam penggunaannya jika ls tidak diikuti dengan option atau argument maka secara otomais ls hanya akan menampilkan list dari directory yang sekarang. Jika kita menggunakan ls dan memberikan sebuah argument yang biasanya adalah sebuah path maka ls akan menampilkan list dari path tersebut, jika option di berikan dalam ls biasanya itu hanya akan mempengaruhi bagaimana hasil output dari list tersebut.
 
-## Tips
-Commad | Description
---- | ---
-**ls path1 path2** | akan menampilkan isi dari kedua path tersebut
+**Often used Options**
 
-## Often used Options
 Option | Long Option | Description
 --- | --- | ---
 **-a** | **--all** | menampilkan seluruh folder yang ada temasuk hidden folder, back folder dan current folder
@@ -17,6 +13,11 @@ Option | Long Option | Description
 **-r** | **--reverse** | menampilkan list dengan urutan terbalik (descending)
 **-S** | | menampilkan berdasarkan ukuran file
 **-t** | | menampilkan berdasarkan waktu modifikasi
+
+**Tips**
+Commad | Description
+--- | ---
+**ls path1 path2** | akan menampilkan isi dari kedua path tersebut
 
 **Example**
 
